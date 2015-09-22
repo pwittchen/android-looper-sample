@@ -3,7 +3,7 @@ android-looper-sample
 
 Exemplary Android app showing usage of Handler and Looper
 
-In Android `Looper` and `Handler` can be used for creating simple queue of tasks. We have to remember that all tasks are executed in a single `LooperThread`, so if operation scheduled in queue will take a lot of time, it should be executed in a new thread. Moreover, instance of `Handler` should be static to avoid memory leaks. We can also post `Message` object to `LooperThread` and handle it via `Hanlder` in `handleMessage(Message msg)` method. `Message` could contain small pieces of data of primitive types or Strings in a `Bundle` object.
+In Android `Looper` and `Handler` can be used for creating simple queue of tasks. We have to remember that all tasks are executed in a single `LooperThread`, so if operation scheduled in queue will take a lot of time, it should be executed in a new thread. Moreover, instance of `Handler` should be static to avoid memory leaks. We can also post `Message` object to `LooperThread` and handle it via `Hanlder` in `handleMessage(Message msg)` method. `Message` could contain small pieces of data like primitive types or Strings in a `Bundle` object.
 
 **What is Looper?**
 
