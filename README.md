@@ -3,6 +3,17 @@ android-looper-sample
 
 Exemplary Android app showing usage of Handler and Looper
 
+Contents
+--------
+
+- [Overview](#overview)
+- [What is Looper?](#what-is-looper)
+- [Where can we use Looper class?](#where-can-we-use-looper-class)
+- [How does Looper work?](#how-does-looper-work)
+- [Quiting the Looper](#quiting-the-looper)
+- [References](#references)
+
+
 Overview
 --------
 
