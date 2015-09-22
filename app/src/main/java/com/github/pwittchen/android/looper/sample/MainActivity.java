@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
     Thread thread = new Thread(new Runnable() {
       @Override public void run() {
         try {
-          Log.d(getClass().getSimpleName(), String.format("Starting #%s", id));
+          Log.d(getClass().getSimpleName(), String.format("Starting #%d", id));
           Thread.sleep(5000);
-          Log.d(getClass().getSimpleName(), String.format("Finishing #%s", id));
+          Log.d(getClass().getSimpleName(), String.format("Finishing #%d", id));
         } catch (InterruptedException e) {
-          Log.d(getClass().getSimpleName(), String.format("Error while executing #%s", id));
+          Log.d(getClass().getSimpleName(), String.format("Error while executing #%d", id));
           Log.e(getClass().getSimpleName(), e.getMessage());
         }
       }
