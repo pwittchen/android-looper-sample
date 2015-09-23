@@ -10,17 +10,46 @@
     >
 
   <Button
-      android:id="@+id/b_post_runnables"
+      android:id="@+id/b_post_runnable"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="post runnable"
       />
 
   <Button
+      android:id="@+id/b_post_runnable_rx"
+      android:layout_below="@+id/b_post_runnable"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="post runnable with Rx"
+      />
+
+  <Button
       android:id="@+id/b_send_message"
-      android:layout_below="@+id/b_post_runnables"
+      android:layout_below="@+id/b_post_runnable_rx"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="send message"
       />
+
+  <Button
+      android:id="@+id/b_clear_log"
+      android:layout_below="@+id/b_send_message"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="clear log"
+      />
+
+  <ScrollView
+      android:id="@+id/sv_log"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@+id/b_clear_log"
+      >
+    <TextView
+        android:id="@+id/tv_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+  </ScrollView>
 </RelativeLayout>
