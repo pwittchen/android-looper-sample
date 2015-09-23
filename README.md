@@ -3,6 +3,8 @@ android-looper-sample
 
 Exemplary Android app showing usage of Handler and Looper
 
+**Please note**: This project is an experiment and may contain bugs.
+
 Contents
 --------
 
