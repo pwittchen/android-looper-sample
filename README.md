@@ -58,3 +58,4 @@ References
 - [What is the purpose of Looper and how to use it? (via StackOverflow)](http://stackoverflow.com/questions/7597742/what-is-the-purpose-of-looper-and-how-to-use-it)
 - [Where to quit the Looper? (via StackOverflow)](http://stackoverflow.com/questions/17617731/where-quit-the-looper)
 - [Understanding Android Core: Looper, Handler, and HandlerThread](https://blog.mindorks.com/android-core-looper-handler-and-handlerthread-bd54d69fe91a)
+- [Post office simulator looper sample](https://github.com/MindorksOpenSource/post-office-simulator-looper-example)
