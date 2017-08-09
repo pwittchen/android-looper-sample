@@ -7,10 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * This is an exemplary application
@@ -34,12 +30,6 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback {
     findViewById(R.id.b_post_runnable).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         postRunnable(++counter);
-      }
-    });
-
-    findViewById(R.id.b_post_runnable_rx).setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        postRunnableRx(++counter);
       }
     });
 
@@ -87,14 +77,6 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback {
     });
   }
 
-  private void postRunnableRx(final int id) {
-    looperThread.post(new Runnable() {
-      @Override public void run() {
-        tryToSleepForFiveSecondsRx(id);
-      }
-    });
-  }
-
   private void tryToSleepForFiveSecondsInNewThread(final int id) {
     new Thread(new Runnable() {
       @Override public void run() {
@@ -109,52 +91,12 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback {
     }).start();
   }
 
-  private void tryToSleepForFiveSecondsRx(final int id) {
-    tryToSleepForFiveSecondsInObservable()
-        .subscribeOn(Schedulers.computation())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber() {
-          @Override public void onStart() {
-            // for some reason, we have to use runOnUiThread(...) function here
-            // even if we call observeOn(AndroidSchedulers.mainThread())
-            logMessageInUiThread("starting (rx)", id);
-          }
-
-          @Override public void onCompleted() {
-            logMessageInUiThread("completed (rx)", id);
-          }
-
-          @Override public void onError(Throwable e) {
-            logMessageInUiThread("error (rx)", id);
-          }
-
-          @Override public void onNext(Object o) {
-            logMessageInUiThread("finished (rx)", id);
-          }
-        });
-  }
-
-  public Observable tryToSleepForFiveSecondsInObservable() {
-    return Observable.create(new Observable.OnSubscribe<Object>() {
-      @Override public void call(Subscriber<? super Object> subscriber) {
-        try {
-          Thread.sleep(5000);
-          subscriber.onNext(subscriber);
-          subscriber.onCompleted();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-          subscriber.onNext(subscriber);
-          subscriber.onCompleted();
-        }
-      }
-    });
-  }
-
   private void logMessageInUiThread(String action, int id) {
     final String message = String.format("%s #%d\n", action, id);
     Log.d(getClass().getSimpleName(), message);
 
-    // Known issue: code below doesn't work correctly on screen rotation.
+    // Known issue: code below doesn't work correctly on recreating
+    // an Activity (screen rotation/resuming activity, etc.).
     // If call was started in vertical orientation,
     // we won't receive "finish" message in horizontal orientation.
 
